@@ -7,7 +7,7 @@ from typing import Tuple
 from review import Review
 
 
-def download_all_reviews_of(product_id: int) -> Tuple[str, list[Review]]:
+def download_all_reviews_of(product_id: int) -> Tuple[str, list]:
     reviews: list[Review] = []
     page: int = 1
 
