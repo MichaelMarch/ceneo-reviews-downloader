@@ -32,7 +32,8 @@ def download_all_reviews_of(product_id: int) -> Tuple[str, list]:
         for review_source in reviews_source:
             r_id: int = int(review_source["data-entry-id"])
             r_author: str = review_source.select_one("span.user-post__author-name").get_text("", True)
-            r_recommended: str = review_source.select_one("span.user-post__author-recomendation > em").get_text()
+            r_recommended_tag = review_source.select_one("span.user-post__author-recomendation > em")
+            r_recommended: str = r_recommended_tag.get_text() if not r_recommended_tag is None else ""
             r_score: str = review_source.select_one("span.user-post__score-count").get_text()
             published_dates: BeautifulSoup.Tag = review_source.select_one("span.user-post__published").select("time")
             r_published_date: str = published_dates[0]["datetime"]
